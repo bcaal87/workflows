@@ -1,0 +1,15 @@
+name: Validar HTML
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  validar-html:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar HTML
+        uses: chabad360/htmlproofer@v1.0
+        with:
+          directory: .
