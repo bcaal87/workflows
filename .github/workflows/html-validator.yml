@@ -2,7 +2,8 @@ name: Validar HTML
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   validar-html:
@@ -10,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validar HTML
-        uses: chabad360/htmlproofer@v1.0
+        uses: EndBug/html-validator@v1
         with:
-          directory: .
+          files: '**/*.html'
+
