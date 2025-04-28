@@ -1,17 +1,26 @@
-name: Validar HTML
+name: Validar HTML con HTMLHint
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  validar-html:
+  htmlhint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validar HTML
-        uses: EndBug/html-validator@v1
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
         with:
-          files: '**/*.html'
+          node-version: '20'
+
+      - name: Instalar HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Ejecutar HTMLHint
+        run: htmlhint "**/*.html"
+
 
